@@ -1,0 +1,21 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-3xl relative;
+}
+h2 {
+  @apply text-2xl relative;
+}
+h3 {
+  @apply text-xl relative;
+}
+h4 {
+  @apply text-lg block;
+  line-height: 0;
+}
+input {
+  @apply border border-black rounded p-1 mr-1;
+}

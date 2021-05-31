@@ -1,0 +1,51 @@
+body {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#doit {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: [l] 1fr [l_content] auto [r_content] 1fr [r];
+  grid-template-rows: [t] 1fr [t_content] auto [b_content] 1fr [b];
+}
+
+#launch {
+  grid-column-start: l_content;
+  grid-row-start: t_content;
+  text-align: center;
+}
+#doit h1 {
+  font-size: 10em;
+  margin: 0;
+}
+
+/* https://codepen.io/dudleystorey/pen/zqgGn */
+.brb {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border: none;
+  color: white;
+  font-family: Avenir, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  background: red;
+  text-shadow: 0 3px 1px rgba(122, 17, 8, 0.8);
+  box-shadow: 0 8px 0 rgb(183, 9, 0), 0 15px 20px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+  transition: 0.1s all ease-in;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.brb span {
+  position: relative;
+}
+/* fix for IE 11 (and IE8+, although the earlier versions are harder to address) stupidly moving the inner button text on click */
+.brb.pressed {
+  padding-top: 3px;
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 rgb(183, 0, 0), 0 8px 6px rgba(0, 0, 0, 0.45);
+}
