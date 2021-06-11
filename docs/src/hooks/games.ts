@@ -2,17 +2,6 @@ import { TeamState } from "./team";
 
 type GameUrl = { text: string; href: string };
 
-export const gameUrls = [
-  {
-    text: "dvd",
-    href: "https://dvd.js.org",
-  },
-  {
-    text: "fish",
-    href: "https://fish.js.org",
-  },
-];
-
 export const launchGame = (
   { teams, activeTeam }: TeamState,
   href: GameUrl["href"]
@@ -24,5 +13,5 @@ export const launchGame = (
     "names",
     team.members.map((v) => encodeURIComponent(v.name)).join(",")
   );
-  window.location.href = url.toString();
+  window.open(url.toString());
 };

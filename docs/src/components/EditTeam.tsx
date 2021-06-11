@@ -2,53 +2,63 @@ import clsx from "clsx";
 import React from "react";
 import { Team, Member } from "../hooks/team";
 import EditTeammate from "./EditTeammate";
+import { StarSvg } from "./icon/StarSvg";
 import Trash from "./icon/Trash";
 
 const EditTeam: React.FC<
   {
+    active?: boolean;
     team: Team;
+    handleSetActive: () => void;
     handleTeamChange: (team: Team) => void;
     handleTeamDelete: (team: Team) => void;
   } & React.HTMLProps<HTMLDivElement>
 > = function EditTeam({
+  active,
   team,
+  handleSetActive,
   handleTeamChange,
   handleTeamDelete,
   className,
   ...rest
 }) {
   const isMembersOk = team.members.every(({ name }) => !!name);
+  const classNames = clsx(
+    className,
+    "m-2",
+    "p-2",
+    "border-blue-400",
+    "border-2",
+    "rounded",
+    "inline-block",
+    "max-w-lg",
+    "w-full",
+    "align-top"
+  );
   return (
-    <div
-      {...rest}
-      className={clsx(
-        className,
-        "m-2",
-        "p-2",
-        "border-blue-400",
-        "border-2",
-        "rounded",
-        "inline-block",
-        "max-w-lg",
-        "w-full",
-        "align-top"
-      )}
-    >
-      <input
-        type="text"
-        defaultValue={team.name}
-        placeholder="Team Name"
-        onBlur={(evt) => {
-          const name = evt.currentTarget.value.trim();
-          if (!name) return;
-          handleTeamChange({ ...team, name });
-        }}
-        className={clsx(
-          !team.name && "border-red-500 border-b-2",
-          "text-2xl",
-          "border-b"
-        )}
-      />
+    <div className={classNames} {...rest}>
+      <div className="flex align-middle">
+        <input
+          type="text"
+          defaultValue={team.name}
+          placeholder="Team Name"
+          onBlur={(evt) => {
+            const name = evt.currentTarget.value.trim();
+            if (!name) return;
+            handleTeamChange({ ...team, name });
+          }}
+          className={clsx(
+            !team.name && "border-red-500 border-b-2",
+            "text-2xl",
+            "border-b"
+          )}
+        />
+        <StarSvg
+          onClick={handleSetActive}
+          className="inline-block w-8 cursor-pointer"
+          {...(active ? { fill: "gold" } : {})}
+        />
+      </div>
       <h3 className="mt-2">Teammates</h3>
       <ul style={{ listStyleType: "katakana" }} className="list-inside">
         {[

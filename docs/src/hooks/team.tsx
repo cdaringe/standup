@@ -23,7 +23,7 @@ export const Teams = React.createContext<{
 const readTeamStateStorage: () => TeamState = () => {
   if (typeof window === "undefined") return DEFAULT_TEAM_STATE;
   try {
-    return (
+    return maybePatchActiveTeam(
       JSON.parse(window.localStorage.getItem("teamState")) || DEFAULT_TEAM_STATE
     );
   } catch {
@@ -36,9 +36,22 @@ const setTeamStateStorage: (state: TeamState) => void = (state) => {
   window.localStorage.setItem("teamState", JSON.stringify(state));
 };
 
+const maybePatchActiveTeam: (state: TeamState) => void = (state) => {
+  if (state.teams.find((t) => t.id === state.activeTeam)) {
+    return state;
+  } else {
+    delete state.activeTeam;
+  }
+  if (state.teams.length && !state.activeTeam) {
+    state.activeTeam = state.teams[0].id;
+  }
+  return state;
+};
+
 export const TeamsProvider: React.FC = ({ children }) => {
   const [teamState, setTeamState] = React.useState(readTeamStateStorage());
   const update = (state: TeamState) => {
+    maybePatchActiveTeam(state);
     setTeamStateStorage(state);
     setTeamState(state);
   };
