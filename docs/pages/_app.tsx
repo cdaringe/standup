@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
         dangerouslySetInnerHTML={{
           __html: `
     <a
-    href="https://github.com/cdarige/standup"
+    href="https://github.com/cdaringe/standup"
     class="github-corner"
     aria-label="View source on GitHub"
     target="none"

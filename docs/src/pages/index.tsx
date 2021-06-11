@@ -101,10 +101,10 @@ export default function Index() {
       <ol className="list-decimal list-inside p-4 mb-8">
         {[
           "make a game",
-          "install standup: pnpm install @cdarige/standup",
-          'import it: import { init } from "@cdarige/standup"',
+          "install standup: pnpm install @cdaringe/standup",
+          'import it: import { init } from "@cdaringe/standup"',
           `integrate it: init({ team })`,
-          "add your app to @cdarige/standup#main apps.ts",
+          "add your app to @cdaringe/standup#main apps.ts",
         ].map((text) => (
           <li key={text}>
             <pre className="inline-block">{text}</pre>
