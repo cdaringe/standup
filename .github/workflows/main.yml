@@ -28,8 +28,10 @@ jobs:
           pnpm format -- --check
           pnpm build
           pnpm export
+          touch docs/out/.nojekyll && ls -al docs/out/.nojekyll
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
           folder: docs/out
+          clean: true
