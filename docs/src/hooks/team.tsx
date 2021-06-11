@@ -27,7 +27,7 @@ const readTeamStateStorage: () => TeamState = () => {
       JSON.parse(window.localStorage.getItem("teamState")) || DEFAULT_TEAM_STATE
     );
   } catch {
-    return [];
+    return DEFAULT_TEAM_STATE;
   }
 };
 
@@ -36,7 +36,7 @@ const setTeamStateStorage: (state: TeamState) => void = (state) => {
   window.localStorage.setItem("teamState", JSON.stringify(state));
 };
 
-const maybePatchActiveTeam: (state: TeamState) => void = (state) => {
+const maybePatchActiveTeam: (state: TeamState) => TeamState = (state) => {
   if (state.teams.find((t) => t.id === state.activeTeam)) {
     return state;
   } else {
